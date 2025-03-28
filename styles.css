@@ -397,3 +397,97 @@ body.dark-theme .order-pay {
         width: 100%;
     }
 }
+/* Previous styles remain the same until the end */
+
+/* Add these new styles for the video section */
+.video-card {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    margin-bottom: 20px;
+    background: #000;
+    border-radius: 10px;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.video-features {
+    text-align: left;
+    margin-top: 20px;
+}
+
+.video-features ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.video-features li {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    color: var(--text-color);
+    font-size: 18px;
+}
+
+.video-features li:before {
+    content: "•";
+    color: var(--primary-color);
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+.video-input {
+    margin: 30px auto;
+    max-width: 600px;
+    display: flex;
+    gap: 10px;
+}
+
+.video-input input {
+    flex: 1;
+    padding: 12px 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background: var(--card-bg);
+    color: var(--text-color);
+    font-size: 16px;
+}
+
+.video-input button {
+    padding: 12px 25px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.video-input button:hover {
+    background: var(--primary-hover);
+}
+
+/* Dark theme specific video styles */
+body.dark-theme .video-features li {
+    color: #f5f7fa;
+}
+
+body.dark-theme .video-input input {
+    border-color: #444;
+    background: #2d2d2d;
+}
