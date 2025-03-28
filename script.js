@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return {
             "particles": {
                 "number": {
-                    "value": 80,
+                    "value": 180,
                     "density": {
                         "enable": true,
                         "value_area": 800
@@ -160,17 +160,17 @@ document.addEventListener('DOMContentLoaded', function() {
                     "random": false,
                     "anim": {
                         "enable": false,
-                        "speed": 1,
+                        "speed": 4,
                         "opacity_min": 0.1,
                         "sync": false
                     }
                 },
                 "size": {
-                    "value": 3,
+                    "value": 4,
                     "random": true,
                     "anim": {
                         "enable": false,
-                        "speed": 40,
+                        "speed": 80,
                         "size_min": 0.1,
                         "sync": false
                     }
@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 },
                 "move": {
                     "enable": true,
-                    "speed": 2,
+                    "speed": 5,
                     "direction": "none",
                     "random": false,
                     "straight": false,
@@ -239,4 +239,84 @@ document.addEventListener('DOMContentLoaded', function() {
             "retina_detect": true
         };
     }
+
+    // Video functionality
+    function addVideoFromLink(link) {
+        const videoId = extractYouTubeId(link);
+        const grid = document.querySelector('#video-container');
+        
+        if (videoId) {
+            const videoCard = document.createElement('div');
+            videoCard.className = 'project-card video-card';
+            videoCard.innerHTML = `
+                <h3>New Video</h3>
+                <div class="video-container">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="video-features">
+                    <ul>
+                        <li>Feature 1</li>
+                        <li>Feature 2</li>
+                    </ul>
+                </div>
+            `;
+            
+            // Add error handling for the iframe
+            const iframe = videoCard.querySelector('iframe');
+            iframe.onerror = function() {
+                iframe.style.display = 'none';
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'video-error';
+                errorDiv.innerHTML = `
+                    <p>www.youtube.com refused to connect.</p>
+                `;
+                videoCard.querySelector('.video-container').appendChild(errorDiv);
+            };
+            
+            grid.appendChild(videoCard);
+        } else {
+            alert('Invalid YouTube URL');
+        }
+    }
+    
+    function extractYouTubeId(url) {
+        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+        const match = url.match(regExp);
+        return (match && match[2].length === 11) ? match[2] : null;
+    }
+
+    // Fetch YouTube videos
+    const CHANNEL_ID = "UCWqOsB5-eX3GzQYco7Ev4iw"; // Dimoxx-cheat's YouTube Channel ID
+    const YT_FEED_URL = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
+
+    async function fetchLatestVideos() {
+        try {
+            const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(YT_FEED_URL)}`);
+            const data = await response.json();
+
+            if (data.items && data.items.length > 0) {
+                const videoContainer = document.getElementById('video-container');
+                data.items.slice(0, 3).forEach(video => {
+                    const videoUrl = video.link;
+                    const videoId = videoUrl.split('watch?v=')[1]; // Extract video ID
+                    const title = video.title;
+
+                    const videoCard = document.createElement('div');
+                    videoCard.className = 'project-card video-card';
+                    videoCard.innerHTML = `
+                        <h3>${title}</h3>
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    `;
+                    videoContainer.appendChild(videoCard);
+                });
+            }
+        } catch (error) {
+            console.error('Error fetching videos:', error);
+        }
+    }
+
+    // Fetch videos on page load
+    fetchLatestVideos();
 });
