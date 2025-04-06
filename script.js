@@ -1,322 +1,293 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Theme toggle functionality
-    const themeToggle = document.getElementById('theme-toggle');
-    const body = document.body;
+// Loading Animation
+window.addEventListener('load', function() {
+    const loader = document.querySelector('.loader');
+    loader.classList.add('hidden');
+});
+
+// Mobile Menu Toggle
+const menuToggle = document.getElementById('menuToggle');
+const nav = document.getElementById('nav');
+
+menuToggle.addEventListener('click', function() {
+    nav.classList.toggle('active');
+    menuToggle.innerHTML = nav.classList.contains('active') ? 
+        '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+});
+
+// Close mobile menu when clicking a link
+document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', () => {
+        nav.classList.remove('active');
+        menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+    });
+});
+
+// Theme Toggle
+const themeToggle = document.getElementById('theme-toggle');
+const themeColors = document.querySelector('.theme-colors');
+const colorOptions = document.querySelectorAll('.color-option');
+
+themeToggle.addEventListener('click', function() {
+    document.body.classList.toggle('light-theme');
+    const isLight = document.body.classList.contains('light-theme');
+    themeToggle.innerHTML = isLight ? 
+        '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+});
+
+// Show color options on hover
+themeToggle.addEventListener('mouseenter', function() {
+    themeColors.classList.add('show');
+});
+
+themeToggle.addEventListener('mouseleave', function() {
+    themeColors.classList.remove('show');
+});
+
+// Change primary color
+colorOptions.forEach(option => {
+    option.addEventListener('click', function() {
+        const color = this.getAttribute('data-color');
+        document.documentElement.style.setProperty('--primary', color);
+    });
+});
+
+// FAQ Accordion
+const faqItems = document.querySelectorAll('.faq-popup-item');
+faqItems.forEach(item => {
+    const question = item.querySelector('.faq-popup-question');
+    question.addEventListener('click', () => {
+        item.classList.toggle('active');
+    });
+});
+
+// Popup Triggers
+document.getElementById('systemRequirementsLink').addEventListener('click', function(e) {
+    e.preventDefault();
+    document.getElementById('requirementsPopup').style.display = 'flex';
+});
+
+document.getElementById('faqLink').addEventListener('click', function(e) {
+    e.preventDefault();
+    document.getElementById('faqPopup').style.display = 'flex';
+});
+
+document.getElementById('comingSoonLink').addEventListener('click', function(e) {
+    e.preventDefault();
+    document.getElementById('soonPopup').style.display = 'flex';
+});
+
+// Close Popups
+document.querySelector('.close-requirements').addEventListener('click', function() {
+    document.getElementById('requirementsPopup').style.display = 'none';
+});
+
+document.querySelector('.close-faq-popup').addEventListener('click', function() {
+    document.getElementById('faqPopup').style.display = 'none';
+});
+
+document.querySelector('.close-soon').addEventListener('click', function() {
+    document.getElementById('soonPopup').style.display = 'none';
+});
+
+// Close popups when clicking outside
+window    // Close popups when clicking outside
+window.addEventListener('click', function(e) {
+    if (e.target === document.getElementById('requirementsPopup')) {
+        document.getElementById('requirementsPopup').style.display = 'none';
+    }
+    if (e.target === document.getElementById('faqPopup')) {
+        document.getElementById('faqPopup').style.display = 'none';
+    }
+    if (e.target === document.getElementById('soonPopup')) {
+        document.getElementById('soonPopup').style.display = 'none';
+    }
+});
+
+// Custom Cursor
+const cursor = document.querySelector('.cursor');
+const cursorFollower = document.querySelector('.cursor-follower');
+
+document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
     
-    // Check for saved theme preference or use preferred color scheme
-    const savedTheme = localStorage.getItem('theme') || 
-                     (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    body.classList.add(savedTheme + '-theme');
-    updateThemeIcon(savedTheme);
-    
-    // Initialize particles with correct theme
-    initParticles(savedTheme);
-    
-    themeToggle.addEventListener('click', function() {
-        if (body.classList.contains('dark-theme')) {
-            body.classList.remove('dark-theme');
-            body.classList.add('light-theme');
-            localStorage.setItem('theme', 'light');
-            updateThemeIcon('light');
-            updateParticlesTheme('light');
-        } else {
-            body.classList.remove('light-theme');
-            body.classList.add('dark-theme');
-            localStorage.setItem('theme', 'dark');
-            updateThemeIcon('dark');
-            updateParticlesTheme('dark');
+    // Add slight delay to follower for smooth effect
+    setTimeout(() => {
+        cursorFollower.style.left = e.clientX + 'px';
+        cursorFollower.style.top = e.clientY + 'px';
+    }, 100);
+});
+
+// Video Play Button
+const playButton = document.querySelector('.play-button');
+const videoPlaceholder = document.querySelector('.video-placeholder');
+
+playButton.addEventListener('click', function () {
+    videoPlaceholder.innerHTML = `
+        <iframe width="100%" height="100%" 
+            src="https://www.youtube.com/embed/xFhUMLih8bk?autoplay=1" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+        </iframe>
+    `;
+});
+
+
+// Update current year in footer
+document.getElementById('current-year').textContent = new Date().getFullYear();
+
+
+
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+            window.scrollTo({
+                top: targetElement.offsetTop - 80,
+                behavior: 'smooth'
+            });
         }
     });
-    
-    function updateThemeIcon(theme) {
-        const icon = themeToggle.querySelector('i');
-        if (theme === 'dark') {
-            icon.classList.remove('fa-moon');
-            icon.classList.add('fa-sun');
+});
+
+// Form submission handling
+const newsletterForm = document.querySelector('.newsletter-form-expanded');
+if (newsletterForm) {
+    newsletterForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const emailInput = this.querySelector('input[type="email"]');
+        
+        if (emailInput.value && emailInput.value.includes('@')) {
+            // Show success message or send data to server
+            alert('Thanks for subscribing! You\'ll hear from us soon.');
+            emailInput.value = '';
         } else {
-            icon.classList.remove('fa-sun');
-            icon.classList.add('fa-moon');
+            alert('Please enter a valid email address.');
         }
-    }
+    });
+}
+
+// Payment modal simulation
+const priceButtons = document.querySelectorAll('.price-button, .cta-btn');
+priceButtons.forEach(button => {
+    button.addEventListener('click', function(e) {
+        if (this.href) return; // If it's a link, let it proceed
+        
+        e.preventDefault();
+        showPaymentModal();
+    });
+});
+
+function showPaymentModal() {
+    const modal = document.createElement('div');
+    modal.className = 'payment-modal active';
+    modal.innerHTML = `
+        <div class="payment-container">
+            <button class="close-modal"><i class="fas fa-times"></i></button>
+            <div class="payment-header">
+                <h3>Complete Your Purchase</h3>
+                <p>Enter your payment details to get started</p>
+            </div>
+            <form class="payment-form">
+                <div class="form-group">
+                    <label for="card-number">Card Number</label>
+                    <input type="text" id="card-number" placeholder="1234 5678 9012 3456">
+                </div>
+                <div class="form-group">
+                    <label for="card-expiry">Expiry Date</label>
+                    <input type="text" id="card-expiry" placeholder="MM/YY">
+                </div>
+                <div class="form-group">
+                    <label for="card-cvc">CVC</label>
+                    <input type="text" id="card-cvc" placeholder="123">
+                </div>
+                <button type="submit" class="payment-button">
+                    <div class="loading-spinner"></div>
+                    <span>Pay Now</span>
+                </button>
+            </form>
+            <div class="payment-footer">
+                <p>Secure payment processing</p>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                </div>
+            </div>
+        </div>
+    `;
     
-    // Color theme customization
-    const colorOptions = document.querySelectorAll('.color-option');
-    colorOptions.forEach(option => {
-        option.addEventListener('click', function() {
-            const color = this.getAttribute('data-color');
-            document.documentElement.style.setProperty('--primary-color', color);
-            
-            // Calculate a slightly darker version for hover states
-            const hoverColor = shadeColor(color, -20);
-            document.documentElement.style.setProperty('--primary-hover', hoverColor);
-            
-            // Update particles color if in light mode
-            if (!body.classList.contains('dark-theme')) {
-                updateParticlesColor(color);
-            }
-            
-            // Save the selected color
-            localStorage.setItem('primaryColor', color);
-            localStorage.setItem('primaryHover', hoverColor);
-        });
+    document.body.appendChild(modal);
+    
+    // Close modal
+    modal.querySelector('.close-modal').addEventListener('click', () => {
+        modal.remove();
     });
     
-    // Apply saved color theme if exists
-    const savedPrimaryColor = localStorage.getItem('primaryColor');
-    const savedPrimaryHover = localStorage.getItem('primaryHover');
-    if (savedPrimaryColor) {
-        document.documentElement.style.setProperty('--primary-color', savedPrimaryColor);
-        document.documentElement.style.setProperty('--primary-hover', savedPrimaryHover || shadeColor(savedPrimaryColor, -20));
+    // Form submission
+    const form = modal.querySelector('.payment-form');
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
         
-        // Update particles if in light mode
-        if (!body.classList.contains('dark-theme')) {
-            updateParticlesColor(savedPrimaryColor);
-        }
-    }
-    
-    // Helper function to shade colors
-    function shadeColor(color, percent) {
-        let R = parseInt(color.substring(1,3), 16);
-        let G = parseInt(color.substring(3,5), 16);
-        let B = parseInt(color.substring(5,7), 16);
-
-        R = parseInt(R * (100 + percent) / 100);
-        G = parseInt(G * (100 + percent) / 100);
-        B = parseInt(B * (100 + percent) / 100);
-
-        R = (R<255)?R:255;  
-        G = (G<255)?G:255;  
-        B = (B<255)?B:255;  
-
-        R = Math.round(R);
-        G = Math.round(G);
-        B = Math.round(B);
-
-        const RR = ((R.toString(16).length==1)?"0"+R.toString(16):R.toString(16));
-        const GG = ((G.toString(16).length==1)?"0"+G.toString(16):G.toString(16));
-        const BB = ((B.toString(16).length==1)?"0"+B.toString(16):B.toString(16));
-
-        return "#"+RR+GG+BB;
-    }
-    
-    // Particles.js functions
-    function initParticles(theme) {
-        particlesJS('particles-js', getParticlesConfig(theme));
-    }
-    
-    function updateParticlesTheme(theme) {
-        if (window.pJSDom && window.pJSDom.length > 0) {
-            const particles = window.pJSDom[0].pJS.particles;
-            const config = getParticlesConfig(theme);
-            
-            particles.color.value = config.particles.color.value;
-            particles.line_linked.color = config.particles.line_linked.color;
-            
-            // Refresh particles
-            window.pJSDom[0].pJS.fn.particlesRefresh();
-        }
-    }
-    
-    function updateParticlesColor(color) {
-        if (window.pJSDom && window.pJSDom.length > 0) {
-            const particles = window.pJSDom[0].pJS.particles;
-            
-            particles.color.value = color;
-            particles.line_linked.color = color;
-            
-            // Refresh particles
-            window.pJSDom[0].pJS.fn.particlesRefresh();
-        }
-    }
-    
-    function getParticlesConfig(theme) {
-        const isDark = theme === 'dark';
-        const primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color').trim() || '#1e90ff';
+        const button = this.querySelector('.payment-button');
+        button.classList.add('loading');
         
-        return {
-            "particles": {
-                "number": {
-                    "value": 180,
-                    "density": {
-                        "enable": true,
-                        "value_area": 800
-                    }
-                },
-                "color": {
-                    "value": isDark ? "#ffffff" : primaryColor
-                },
-                "shape": {
-                    "type": "circle",
-                    "stroke": {
-                        "width": 0,
-                        "color": "#000000"
-                    },
-                    "polygon": {
-                        "nb_sides": 5
-                    }
-                },
-                "opacity": {
-                    "value": isDark ? 0.2 : 0.3,
-                    "random": false,
-                    "anim": {
-                        "enable": false,
-                        "speed": 4,
-                        "opacity_min": 0.1,
-                        "sync": false
-                    }
-                },
-                "size": {
-                    "value": 4,
-                    "random": true,
-                    "anim": {
-                        "enable": false,
-                        "speed": 80,
-                        "size_min": 0.1,
-                        "sync": false
-                    }
-                },
-                "line_linked": {
-                    "enable": true,
-                    "distance": 150,
-                    "color": isDark ? "#ffffff" : primaryColor,
-                    "opacity": isDark ? 0.2 : 0.4,
-                    "width": 1
-                },
-                "move": {
-                    "enable": true,
-                    "speed": 5,
-                    "direction": "none",
-                    "random": false,
-                    "straight": false,
-                    "out_mode": "out",
-                    "bounce": false,
-                    "attract": {
-                        "enable": false,
-                        "rotateX": 600,
-                        "rotateY": 1200
-                    }
-                }
-            },
-            "interactivity": {
-                "detect_on": "canvas",
-                "events": {
-                    "onhover": {
-                        "enable": true,
-                        "mode": "grab"
-                    },
-                    "onclick": {
-                        "enable": true,
-                        "mode": "push"
-                    },
-                    "resize": true
-                },
-                "modes": {
-                    "grab": {
-                        "distance": 140,
-                        "line_linked": {
-                            "opacity": 1
-                        }
-                    },
-                    "bubble": {
-                        "distance": 400,
-                        "size": 40,
-                        "duration": 2,
-                        "opacity": 8,
-                        "speed": 3
-                    },
-                    "repulse": {
-                        "distance": 200,
-                        "duration": 0.4
-                    },
-                    "push": {
-                        "particles_nb": 4
-                    },
-                    "remove": {
-                        "particles_nb": 2
-                    }
-                }
-            },
-            "retina_detect": true
-        };
-    }
-
-    // Video functionality
-    function addVideoFromLink(link) {
-        const videoId = extractYouTubeId(link);
-        const grid = document.querySelector('#video-container');
-        
-        if (videoId) {
-            const videoCard = document.createElement('div');
-            videoCard.className = 'project-card video-card';
-            videoCard.innerHTML = `
-                <h3>New Video</h3>
-                <div class="video-container">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-                <div class="video-features">
-                    <ul>
-                        <li>Feature 1</li>
-                        <li>Feature 2</li>
-                    </ul>
-                </div>
+        // Simulate payment processing
+        setTimeout(() => {
+            button.classList.remove('loading');
+            modal.remove();
+            
+            // Show success message
+            const success = document.createElement('div');
+            success.className = 'payment-status';
+            success.innerHTML = `
+                <h1>Payment Successful!</h1>
+                <p>Your purchase has been completed. Check your email for download instructions.</p>
+                <a href="https://discord.gg/y6cHv2DgNe" class="discord-btn">
+                    <i class="fab fa-discord"></i> Join Discord for Support
+                </a>
             `;
             
-            // Add error handling for the iframe
-            const iframe = videoCard.querySelector('iframe');
-            iframe.onerror = function() {
-                iframe.style.display = 'none';
-                const errorDiv = document.createElement('div');
-                errorDiv.className = 'video-error';
-                errorDiv.innerHTML = `
-                    <p>www.youtube.com refused to connect.</p>
-                `;
-                videoCard.querySelector('.video-container').appendChild(errorDiv);
-            };
-            
-            grid.appendChild(videoCard);
-        } else {
-            alert('Invalid YouTube URL');
-        }
-    }
+            document.querySelector('.pricing').appendChild(success);
+            window.scrollTo({
+                top: success.offsetTop - 100,
+                behavior: 'smooth'
+            });
+        }, 2000);
+    });
+}
+
+// Animate elements when they come into view
+const animateOnScroll = () => {
+    const elements = document.querySelectorAll('.project-card, .requirement-card, .section-header');
     
-    function extractYouTubeId(url) {
-        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
-        const match = url.match(regExp);
-        return (match && match[2].length === 11) ? match[2] : null;
-    }
-
-    // Fetch YouTube videos
-    const CHANNEL_ID = "UCWqOsB5-eX3GzQYco7Ev4iw"; // Dimoxx-cheat's YouTube Channel ID
-    const YT_FEED_URL = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
-
-    async function fetchLatestVideos() {
-        try {
-            const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(YT_FEED_URL)}`);
-            const data = await response.json();
-
-            if (data.items && data.items.length > 0) {
-                const videoContainer = document.getElementById('video-container');
-                data.items.slice(0, 3).forEach(video => {
-                    const videoUrl = video.link;
-                    const videoId = videoUrl.split('watch?v=')[1]; // Extract video ID
-                    const title = video.title;
-
-                    const videoCard = document.createElement('div');
-                    videoCard.className = 'project-card video-card';
-                    videoCard.innerHTML = `
-                        <h3>${title}</h3>
-                        <div class="video-container">
-                            <iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>
-                        </div>
-                    `;
-                    videoContainer.appendChild(videoCard);
-                });
-            }
-        } catch (error) {
-            console.error('Error fetching videos:', error);
+    elements.forEach(element => {
+        const elementPosition = element.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight / 1.3;
+        
+        if (elementPosition < screenPosition) {
+            element.style.opacity = '1';
+            element.style.transform = 'translateY(0)';
         }
-    }
+    });
+};
 
-    // Fetch videos on page load
-    fetchLatestVideos();
+// Set initial state for animation
+document.querySelectorAll('.project-card, .requirement-card').forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
+    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
 });
+
+window.addEventListener('scroll', animateOnScroll);
+animateOnScroll(); // Run once on load
+
+// Save preference
+
