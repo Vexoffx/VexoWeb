@@ -3,115 +3,418 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vexo Dev Portfolio</title>
-    <link rel="icon"type="image.png" href="https://i.postimg.cc/wBzxCXkB/Screenshot-2025-03-02-182927-removebg-preview-1.png">
+    <title>Vexo Dev | Premium Game Enhancements</title>
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/wBzxCXkB/Screenshot-2025-03-02-182927-removebg-preview-1.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 </head>
-<body class="light-theme">
-    <div id="particles-js"></div>
+<body>
+  
+    <!-- Loading Animation -->
+    <div class="loader">
+        <div class="loader-spinner"></div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Header -->
     <header>
-        <div class="nav-bar">
-            <h1 class="logo">VEXO DEV</h1>
-            <nav>
-                <a href="#hero">Home</a>
-                <a href="#projects">Projects</a>
-                <a href="#free-product">Free Product</a>
-                <a href="#latest-videos">Videos</a>
-                <a href="#contact">Contact</a>
-                <div class="theme-controls">
-                    <button id="theme-toggle" class="theme-toggle">
-                        <i class="fas fa-moon"></i>
-                    </button>
-                    <div class="theme-colors">
-                        <div class="color-option" data-color="#1e90ff"></div>
-                        <div class="color-option" data-color="#ff4757"></div>
-                        <div class="color-option" data-color="#2ed573"></div>
-                        <div class="color-option" data-color="#ffa502"></div>
-                        <div class="color-option" data-color="#9c88ff"></div>
-                    </div>
+        <a href="#" class="logo">
+            <img src="https://i.postimg.cc/wBzxCXkB/Screenshot-2025-03-02-182927-removebg-preview-1.png" alt="Vexo Dev Logo">
+            VEXO DEV
+        </a>
+        
+        <nav id="nav">
+            <a href="#home">Home</a>
+            <a href="#projects">Projects</a>
+            <a href="#requirements">Requirements</a>
+            <a href="#community">Community</a>
+            <div class="theme-toggle-container">
+                <button id="theme-toggle" class="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="theme-colors">
+                    <div class="color-option" style="background: #1e90ff;" data-color="#1e90ff"></div>
+                    <div class="color-option" style="background: #ff4757;" data-color="#ff4757"></div>
+                    <div class="color-option" style="background: #2ed573;" data-color="#2ed573"></div>
+                    <div class="color-option" style="background: #ffa502;" data-color="#ffa502"></div>
+                    <div class="color-option" style="background: #9c88ff;" data-color="#9c88ff"></div>
                 </div>
-            </nav>
-        </div>
+            </div>
+        </nav>
+        
+        <button class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </button>
     </header>
 
-    <section id="hero" class="hero">
-        <h2>Hello I'm Vexo</h2>
-        <p>Cheat Developer</p>
-        <a href="https://discord.gg/5J5dWSmHZH" target="_blank" class="hero-button">My Panels</a>
-        <div class="icons">
-            <a href="https://www.youtube.com/@VEXOXCHEAT" target="_blank"><i class="fab fa-youtube fa-2x"></i></a>
-            <a href="https://discord.gg/5J5dWSmHZH" target="_blank"><i class="fab fa-discord fa-2x"></i></a>
-        </div>
-    </section>
-
-    <section id="projects" class="projects">
-        <h2>Projects</h2>
-        <div class="project-grid">
-            <div class="project-card">
-                <i class="fas fa-gamepad project-icon"></i>
-                <h3>My Projects</h3>
-                <p>My personal Projects you can see for free. Available on My Discord Server!</p>
-                <a href="https://www.youtube.com/@Dimoxx-cheat" target="_blank" class="project-link">Visit</a>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Take The Game To <span>The Next Level</span></h1>
+            <p>Premium game cheats and hacks designed for competitive players who demand the best performance and security.</p>
+            
+            <div class="hero-buttons">
+                <a href="#projects" class="cta-button">
+                    <i class="fas fa-arrow-right"></i> Get Started
+                </a>
+                <a href="#projects" class="secondary-button">
+                    <i class="fas fa-eye"></i> View Products
+                </a>
+            </div>
+            
+            <div class="social-links">
+                <a href="#" data-tooltip="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="#" data-tooltip="Discord"><i class="fab fa-discord"></i></a>
             </div>
         </div>
+        <img src="https://i.postimg.cc/wBzxCXkB/Screenshot-2025-03-02-182927-removebg-preview-1.png" alt="Hero Image" class="hero-image">
     </section>
 
-    <section id="free-product" class="projects">
-        <h2>Free Product</h2>
-        <div class="project-grid">
-            <div class="project-card">
-                <i class="fas fa-gift project-icon"></i>
-                <h3>Free Panels</h3>
-                <p>Explore our free panels available for use. Join our community for more information.</p>
-                <a href="https://discord.gg/5J5dWSmHZH" target="_blank" class="project-link">Access Free Panels</a>
-            </div>
-            <div class="project-card">
-                <i class="fas fa-box-open project-icon"></i>
-                <h3>Free Stuff</h3>
-                <p>Get access to additional free resources and tools to enhance your experience.</p>
-                <a href="https://discord.gg/XWtXJnEfQm" target="_blank" class="project-link">Get Free Stuff</a>
-            </div>
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <div class="section-header">
+            <h2>🔥 My Creations</h2>
+            <p>High-performance cheats & tools for competitive gamers</p>
+            <div class="glowing-divider"></div>
         </div>
-    </section>
 
-    <section id="latest-videos" class="projects">
-        <h2>Latest Videos</h2>
-        <div class="project-grid" id="video-container">
-            <div class="project-card video-card">
-                <h3>FREE PANEL PC OB48</h3>
-                <div class="video-container">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/hU5iEt-pSUs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="project-cards">
+            <!-- Project Card 1 -->
+            <div class="project-card neon-card">
+                <div class="card-header">
+                    <i class="fas fa-lock-open card-icon"></i>
+                    <h3>Public Releases</h3>
                 </div>
-                <div class="video-features">
-                    <ul>
-                        <li>GRATIS WALLHACK</li>
-                        <li>SPEED HACK</li>
-                        <li>NO REBOIL</li>
-                        <li>AIMBOT HEAD</li>
+                <p class="card-desc">Free-to-use cheats with premium features - perfect for testing and casual play</p>
+                <div class="features">
+                    <span class="feature-tag">AntiBan</span>
+                    <span class="feature-tag">AntiBlacklist</span>
+                    <span class="feature-tag">ESP/Wallhack</span>
+                </div>
+                <a href="https://discord.gg/y6cHv2DgNe" class="discord-btn">
+                    <i class="fab fa-discord"></i> Get on Discord
+                </a>
+            </div>
+
+            <!-- Project Card 2 -->
+            <div class="project-card neon-card">
+                <div class="card-header">
+                    <i class="fas fa-crown card-icon"></i>
+                    <h3>Premium Panels</h3>
+                </div>
+                <p class="card-desc">Elite private cheats with superior features and maximum security</p>
+                <div class="features">
+                    <span class="feature-tag premium">Stream Mode</span>
+                    <span class="feature-tag premium">VIP Support</span>
+                    <span class="feature-tag premium">Undetected</span>
+                </div>
+                <a href="#" class="cta-btn">
+                    <i class="fas fa-arrow-right"></i> Learn More
+                </a>
+            </div>
+
+            <!-- Video Showcase -->
+            <div class="project-card video-showcase" id="videos">
+                <div class="video-header">
+                    <i class="fas fa-play-circle"></i>
+                    <h3>Latest Showcase</h3>
+                </div>
+                <div class="video-placeholder">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="specs">
+                    <div class="spec-item">
+                        <i class="fas fa-bolt"></i>
+                        <span>ESP/Wallhack</span>
+                    </div>
+                    <div class="spec-item">
+                        <i class="fas fa-crosshairs"></i>
+                        <span>Aimbot</span>
+                    </div>
+                    <div class="spec-item">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>No Recoil</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Requirements Section -->
+        <div class="requirements-section" id="requirements">
+            <div class="section-header">
+                <h2>⚙️ System Requirements</h2>
+                <p>Ensure your system meets these specifications for optimal performance</p>
+                <div class="glowing-divider"></div>
+            </div>
+
+            <div class="requirements-cards">
+                <!-- Requirement Card 1 -->
+                <div class="requirement-card">
+                    <i class="fas fa-desktop req-icon"></i>
+                    <h3>Minimum Requirements</h3>
+                    <ul class="req-list">
+                        <li><i class="fas fa-check"></i> Windows 7/8/10/11 (64-bit)</li>
+                        <li><i class="fas fa-check"></i> Dual-core processor</li>
+                        <li><i class="fas fa-check"></i> 4GB RAM</li>
+                        <li><i class="fas fa-check"></i> DirectX 9.0c</li>
                     </ul>
                 </div>
+
+                <!-- Requirement Card 2 -->
+                <div class="requirement-card">
+                    <i class="fas fa-tachometer-alt req-icon"></i>
+                    <h3>Recommended</h3>
+                    <ul class="req-list">
+                        <li><i class="fas fa-check"></i> Windows 10/11 (64-bit)</li>
+                        <li><i class="fas fa-check"></i> Quad-core processor</li>
+                        <li><i class="fas fa-check"></i> 8GB RAM</li>
+                        <li><i class="fas fa-check"></i> DirectX 11</li>
+                    </ul>
+                </div>
+
+                <!-- Requirement Card 3 -->
+                <div class="requirement-card">
+                    <i class="fas fa-microchip req-icon"></i>
+                    <h3>GPU Compatibility</h3>
+                    <div class="gpu-brands">
+                        <div class="gpu-brand intel">
+                            <i class="fas fa-check"></i> Intel HD Graphics 2000+
+                        </div>
+                        <div class="gpu-brand nvidia">
+                            <i class="fas fa-check"></i> NVIDIA GeForce 6000+
+                        </div>
+                        <div class="gpu-brand amd">
+                            <i class="fas fa-check"></i> AMD Radeon X1000+
+                        </div>
+                    </div>
+                </div>
             </div>
+
+            <div class="requirements-note">
+                <p><i class="fas fa-info-circle"></i> Note: Some features may require additional system resources. Performance may vary based on system configuration.</p>
+            </div>
+        </div>
+          
+        <!-- Community CTA -->
+        <div class="community-cta" id="community">
+            <p>Join <span class="highlight" id="discordMemberCount">4,254+</span> members in our cheating community</p>
+            <a href="https://discord.gg/y6cHv2DgNe" class="join-btn">
+                <i class="fab fa-discord"></i> Join Discord Now
+            </a>
         </div>
     </section>
 
-    <section id="contact" class="contact">
-        <h2>Contact</h2>
-        <div class="contact-grid">
-            <div class="contact-card">
-                <i class="fab fa-discord contact-icon"></i>
-                <h3>Discord</h3>
-                <a href="https://discord.gg/5J5dWSmHZH" target="_blank" class="contact-button">Link to my server</a>
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-expanded-grid">
+                <!-- Brand Section - Expanded -->
+                <div class="footer-brand-expanded">
+                    <h2 class="footer-logo">Vexo<span>Dev</span>.</h2>
+                    <p class="footer-tagline">Premium game enhancements and competitive tools for professional gamers</p>
+                    <div class="footer-social-expanded">
+                        <a href="https://www.youtube.com/@Dimoxx-cheat" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://discord.gg/y6cHv2DgNe" aria-label="Discord"><i class="fab fa-discord"></i></a>
+                        <a href="https://github.com/Vexoffx" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+          
+                <!-- Expanded Newsletter Section -->
+                <div class="footer-newsletter-expanded">
+                    <h3 class="footer-heading">Stay Updated</h3>
+                    <p class="newsletter-description">Subscribe to get exclusive updates, early access to new releases, and special offers</p>
+                    <div class="newsletter-form-expanded">
+                        <div class="form-group-expanded">
+                            
+                        </div>
+                    </div>
+                </div>
+          <!-- Privacy Policy Popup -->
+<div class="soon-popup" id="privacyPopup">
+    <div class="soon-content">
+        <div class="soon-header">
+            <h3><i class="fas fa-user-shield"></i> Privacy Policy</h3>
+            <button class="close-soon"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="soon-body">
+            <p>We value your privacy. We do not share your personal information with third parties. Data collected is used only for providing our services and support.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Terms of Service Popup -->
+<div class="soon-popup" id="termsPopup">
+    <div class="soon-content">
+        <div class="soon-header">
+            <h3><i class="fas fa-file-contract"></i> Terms of Service</h3>
+            <button class="close-soon"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="soon-body">
+            <p>By using our services, you agree not to resell, redistribute, or abuse our tools. Misuse may lead to permanent bans or legal action.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Refund Policy Popup -->
+<div class="soon-popup" id="refundPopup">
+    <div class="soon-content">
+        <div class="soon-header">
+            <h3><i class="fas fa-undo-alt"></i> Refund Policy</h3>
+            <button class="close-soon"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="soon-body">
+            <p>We offer refunds within 7 days of purchase only if the product is faulty and the issue cannot be resolved by our support team.</p>
+        </div>
+    </div>
+</div>
+
+                <!-- Expanded Links Section -->
+                <div class="footer-links-expanded">
+                    <div class="links-column">
+                        <h3 class="footer-heading">Products</h3>
+                        <ul>
+                            <li><a href="https://discord.gg/AFdDjfcC7E">Aimbot AI Cheats</a></li>
+                            <li><a href="https://discord.gg/fDrkRQg4jw">Premium Panels</a></li>
+                            <li><a href="https://discord.gg/gsywdr9r">Custom Panels</a></li>
+                            <li><a href="https://discord.gg/nmmuq5RT">Spoofer</a></li>
+                        </ul>
+                    </div>
+                    <div class="links-column">
+                        <h3 class="footer-heading">Resources</h3>
+                        <ul>
+                            <li><a href="https://discord.gg/XWtXJnEfQm">Free Stuff</a></li>
+                            <li><a href="#" id="comingSoonLink">Tutorials</a></li>
+                            <li><a href="#" id="systemRequirementsLink">System Requirements</a></li>
+                            <li><a href="#" id="faqLink">FAQ</a></li>
+                        </ul>
+                    </div>
+                    <div class="links-column">
+                        <h3 class="footer-heading">Team</h3>
+                        <ul>
+                            <li><a href="https://discord.gg/6WgbXHsG">About</a></li>
+                            <li><a href="https://discord.gg/HTJeRWNe3u">Support</a></li>
+                            <li><a href="https://discord.gg/8RHksMjMGT">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="contact-card">
-                <i class="fas fa-envelope contact-icon"></i>
-                <h3>Email</h3>
-                <p>zitxiter@gmail.com</p>
+          
+            <!-- Footer Bottom - Expanded -->
+            <div class="footer-bottom-expanded">
+                <div class="footer-bottom-content">
+                    <p>&copy; <span id="current-year"></span> Vexo Dev. All rights reserved.</p>
+                    <div class="footer-legal-expanded">
+                        <a href="#" id="privacyPolicyLink">Privacy Policy</a>
+<span class="divider">|</span>
+<a href="#" id="termsLink">Terms of Service</a>
+<span class="divider">|</span>
+<a href="#" id="refundPolicyLink">Refund Policy</a>
+
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
+    </footer>
+
+    <!-- Requirements Popup -->
+    <div class="requirements-popup" id="requirementsPopup">
+        <div class="requirements-content">
+            <h3>Minimum System Requirements</h3>
+            <p>To run our cheats optimally, your system needs:</p>
+            <ul>
+                <li><i class="fas fa-check"></i> <strong>OS:</strong> Windows 7/8/10/11 (32-bit or 64-bit)</li>
+                <li><i class="fas fa-check"></i> <strong>CPU:</strong> x86/x64 with SSE2 support</li>
+                <li><i class="fas fa-check"></i> <strong>RAM:</strong> 512MB (1GB+ recommended)</li>
+                <li><i class="fas fa-check"></i> <strong>GPU:</strong> DirectX 9.0c (Shader Model 2.0+)</li>
+                <li class="gpu-models">
+                    <span>Intel HD Graphics 2000+</span>
+                    <span>NVIDIA GeForce 6000+</span>
+                    <span>AMD Radeon X1000+</span>
+                </li>
+            </ul>
+            <button class="close-requirements"><i class="fas fa-times"></i></button>
+        </div>
+    </div>
+
+    <!-- FAQ Popup -->
+    <div class="faq-popup" id="faqPopup">
+        <div class="faq-popup-content">
+            <div class="faq-popup-header">
+                <h3>Frequently Asked Questions</h3>
+                <button class="close-faq-popup"><i class="fas fa-times"></i></button>
+            </div>
+            
+            <div class="faq-popup-body">
+                <!-- FAQ Item 1 -->
+                <div class="faq-popup-item">
+                    <div class="faq-popup-question">
+                        <h4>How often are your cheats updated?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-popup-answer">
+                        <p>Our premium cheats receive updates within 24 hours of any game patch. We monitor game updates constantly and push updates to ensure maximum uptime.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 2 -->
+                <div class="faq-popup-item">
+                    <div class="faq-popup-question">
+                        <h4>Is there a risk of getting banned?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-popup-answer">
+                        <p>While we implement advanced anti-detection measures, there's always some risk when using game modifications. Our lifetime ban rate is less than 2% when used responsibly.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="faq-popup-item">
+                    <div class="faq-popup-question">
+                        <h4>Do you offer refunds?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-popup-answer">
+                        <p>We offer refunds within 7 days of purchase if the product doesn't work as advertised and we're unable to resolve the issue. Please contact our support team for assistance.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-popup-footer">
+                <p>Still have questions?</p>
+                <a href="https://discord.gg/y6cHv2DgNe" class="discord-btn">
+                    <i class="fab fa-discord"></i> Join Our Discord
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Coming Soon Popup -->
+    <div class="soon-popup" id="soonPopup">
+        <div class="soon-content">
+            <div class="soon-header">
+                <h3><i class="fas fa-clock"></i> Coming Soon</h3>
+                <button class="close-soon"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="soon-body">
+                <p>We're working on something awesome! This feature will be available soon.</p>
+                <div class="progress-container">
+                    <div class="progress-bar"></div>
+                </div>
+                <p class="soon-notice">Check back later or join our Discord for updates.</p>
+            </div>
+            <div class="soon-footer">
+                <a href="https://discord.gg/y6cHv2DgNe" class="discord-btn">
+                    <i class="fab fa-discord"></i> Join Discord for Updates
+                </a>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
